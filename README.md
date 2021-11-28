@@ -16,11 +16,11 @@ __*NOBODY SHOULD DIRECTLY PUSH TO THE MAIN REPO.*__
 
 There will be 2 branches
 - main
-- prod
+- dev
 
 _Apart from the 2 branches above you can create as many branches as you want._
 
-__*NOBOBY SHOULD MAKE PULL REQUEST TO MAIN BRANCH. All changes should be made to prod.*__
+__*NOBOBY SHOULD MAKE PULL REQUEST TO MAIN BRANCH. All changes should be made to dev.*__
 
 
 # Folder structure
