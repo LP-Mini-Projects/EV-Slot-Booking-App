@@ -32,4 +32,7 @@ src
  |- components (helper components)
 ```
 
+- Constants.js file should be made for all the the constants in your project.
+- Commits and pull requests should be made with proper descriptive messages.
+
 _Apart from this you can create any folders if you want._
