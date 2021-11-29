@@ -9,4 +9,4 @@ import Booking from './src/screens/Booking';
 import Payment from './src/screens/Payment';
 import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => Payment);
+AppRegistry.registerComponent(appName, () => Booking);
