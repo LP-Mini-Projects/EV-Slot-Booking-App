@@ -1,3 +1,7 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable no-unused-vars */
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import {Col, Row, Grid} from 'react-native-easy-grid';

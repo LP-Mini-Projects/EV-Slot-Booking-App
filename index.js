@@ -1,3 +1,6 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable no-unused-vars */
+/* eslint-disable prettier/prettier */
 /**
  * @format
  */
@@ -11,5 +14,6 @@ import Login from './src/screens/Login';
 import Signup from './src/screens/Signup';
 import CarDetails from './src/screens/CarDetails';
 import {name as appName} from './app.json';
+import TabNavigation from './src/screens/navigation';
 
-AppRegistry.registerComponent(appName, () => CarDetails);
+AppRegistry.registerComponent(appName, () => TabNavigation);
