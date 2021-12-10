@@ -1,10 +1,10 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import {StyleSheet, View, Image} from 'react-native';
-
+import {StyleSheet, View, Image, TouchableOpacity} from 'react-native';
+import Login from './Login';
 import LottieView from 'lottie-react-native';
 
-export default function Splash() {
+export default function Splash({navigation}) {
   return (
     <View style={styles.container}>
       <LottieView
@@ -13,7 +13,9 @@ export default function Splash() {
         loop
         style={styles.animation}
       />
+      <TouchableOpacity onPress={Login}>
       <Image source={require('../assets/logo.png')} style={styles.image} />
+      </TouchableOpacity>
     </View>
   );
 }
