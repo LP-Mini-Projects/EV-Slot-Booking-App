@@ -12,8 +12,8 @@ import {
   Image,
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
-
-export default function Booking() {
+import Payment from './Payment';
+export default function Booking({navigation}) {
   const [date, setDate] = useState(new Date(1598051730000));
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
@@ -94,7 +94,7 @@ export default function Booking() {
         </View>
       </View>
       <View style={styles.buttonview}>
-        {/* <TouchableOpacity onPress={}> */}
+        {/* <TouchableOpacity onPress={Payment}> */}
         <Text style={styles.button}>CONFIRM BOOKING</Text>
         {/* </TouchableOpacity> */}
       </View>
