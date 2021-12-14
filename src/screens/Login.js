@@ -1,7 +1,7 @@
 import React from 'react';
-import {StyleSheet, View, Text, Image, Button,TextInput} from 'react-native';
+import {StyleSheet, View, Text, Image, Button,TextInput,TouchableOpacity} from 'react-native';
 
-export default function Login() {
+export default  Login = ({navigation}) => {
     return (
         <View style={styles.container}>
             <Image source={require('../assets/logo.png')} style={styles.image} />
@@ -25,14 +25,18 @@ export default function Login() {
         />
          </View>
          <Text style={styles.text}>Remember Me                                               Forget Password?</Text>
+         <TouchableOpacity onPress={() => navigation.navigate('CarDetails')}>
          <View style={styles.buttonview}>
          <Text style={styles.button}>LOGIN</Text>
          </View>
+         </TouchableOpacity>
          <Text style={styles.label}>--------------------OR------------------</Text>
          <Text style={styles.label1}>SIGN IN with GOOGLE</Text>
          <Text style={styles.paragraph}>
           Don't have an account?
+        <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
         <Text style={styles.highlight}> Create an account</Text>
+        </TouchableOpacity>
       </Text>
          
         </View>

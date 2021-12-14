@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, Text, Image, Button,TextInput} from 'react-native';
 
-export default function CarDetails() {
+export default CarDetails = ({navigation}) => {
     return (
         <View style={styles.container}>
             <Image source={require('../assets/logo.png')} style={styles.image} />
@@ -33,10 +33,11 @@ export default function CarDetails() {
             placeholderTextColor="#768991"
            />
             </View>
-            
+          <TouchableOpacity onPress={() => navigation.navigate('Searchscreen')}> 
          <View style={styles.buttonview}>
          <Text style={styles.button}>PROCEED</Text>
          </View>
+         </TouchableOpacity>
           </View>
      );
 }

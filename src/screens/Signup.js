@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, Text, Image, Button,TextInput} from 'react-native';
 
-export default function Signup() {
+export default  Signup = ({navigation}) => {
     return (
         <View style={styles.container}>
             <Image source={require('../assets/logo.png')} style={styles.image} />
@@ -40,12 +40,16 @@ export default function Signup() {
             placeholderTextColor="#768991"
            />
             </View>
+         <TouchableOpacity onPress={() => navigation.navigate('CarDetails')}>
          <View style={styles.buttonview}>
          <Text style={styles.button}>SIGNUP</Text>
          </View>
+         </TouchableOpacity>
          <Text style={styles.paragraph}>
           Already have an account?
+          <TouchableOpacity onPress={() => navigation.navigate('Login')}>
         <Text style={styles.highlight}>Sign in</Text>
+        </TouchableOpacity>
       </Text>
          
             
