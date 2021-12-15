@@ -11,9 +11,10 @@ export default function Splash({navigation}) {
         source={require('../assets/splash1.json')}
         autoPlay={true}
         loop
+      
         style={styles.animation}
       />
-      <TouchableOpacity onPress={Login}>
+      <TouchableOpacity onPress={() => navigation.navigate('Login')}>
       <Image source={require('../assets/logo.png')} style={styles.image} />
       </TouchableOpacity>
     </View>

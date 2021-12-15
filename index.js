@@ -16,4 +16,4 @@ import CarDetails from './src/screens/CarDetails';
 import {name as appName} from './app.json';
 import TabNavigation from './src/screens/navigation';
 
-AppRegistry.registerComponent(appName, () => Booking);
+AppRegistry.registerComponent(appName, () => App);

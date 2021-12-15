@@ -1,7 +1,7 @@
-/* eslint-disable prettier/prettier */
+
 import React from 'react';
-import {StyleSheet, View, Text, Image} from 'react-native';
-export default function Payment() {
+import {StyleSheet, View, Text, Image,TouchableOpacity} from 'react-native';
+export default function Payment({navigation}) {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Total Amount to Pay</Text>
@@ -11,7 +11,9 @@ export default function Payment() {
       <Text style={styles.label1}>Transaction ID:XXX XXX XXX</Text>
       <Image source={require('../assets/paytm.png')} style={styles.image} />
       <View style={styles.buttonview}>
+      <TouchableOpacity onPress={() => navigation.navigate('bottomTabNavigations')}> 
         <Text style={styles.button}>MAKE PAYMENT</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, Text, Image, Button,TextInput,TouchableOpacity} from 'react-native';
 
-export default  Login = ({navigation}) => {
+export default function  Login  ({navigation}) {
     return (
         <View style={styles.container}>
             <Image source={require('../assets/logo.png')} style={styles.image} />
@@ -9,7 +9,7 @@ export default  Login = ({navigation}) => {
           <TextInput  
             style={styles.inputText}
             label={"Email"}
-            autoCapitalize={false}
+            autoCapitalize="none"
             placeholder="Email..." 
             placeholderTextColor="#768991"
          />
@@ -19,7 +19,7 @@ export default  Login = ({navigation}) => {
            style={styles.inputText}
            label={"Password"}
            secureTextEntry
-           autoCapitalize={false}
+           autoCapitalize="none"
            placeholder="Password"
            placeholderTextColor="#768991"
         />

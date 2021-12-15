@@ -1,7 +1,4 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable no-trailing-spaces */
-/* eslint-disable no-unused-vars */
-/* eslint-disable prettier/prettier */
+
 import React, {useState} from 'react';
 import {
   StyleSheet,
@@ -94,9 +91,9 @@ export default function Booking({navigation}) {
         </View>
       </View>
       <View style={styles.buttonview}>
-        {/* <TouchableOpacity onPress={Payment}> */}
+        <TouchableOpacity onPress={() => navigation.navigate('Payment')}> 
         <Text style={styles.button}>CONFIRM BOOKING</Text>
-        {/* </TouchableOpacity> */}
+        </TouchableOpacity>
       </View>
     </View>
   );
