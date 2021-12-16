@@ -18,15 +18,14 @@ export default function Search() {
             placeholder={'SEARCH'}
             placeholderTextColor="white"
             
-            onChangeText={(text) => setSearchTerm(text)}
+            
           />
           <TouchableOpacity
             onPress={() => {
-              console.log('pressed');
-              setSearchNow(!searchNow);
+             
             }}>
               <FontAwesome5
-                  name={"search" ? 'search' : 'refresh'}
+                  name= 'search'
                   size={25}
                   color={'white'}
                 />
@@ -46,7 +45,8 @@ const styles = StyleSheet.create({
   input: {
     padding: 7,
     flex: 1,
-    borderBottomColor:"white"
+    borderBottomColor:"white",
+    color:"white",
   },
   inputCard: {
     position: 'absolute',

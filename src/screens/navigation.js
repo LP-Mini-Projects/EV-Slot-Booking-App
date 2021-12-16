@@ -1,25 +1,14 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable comma-dangle */
-
-/* eslint-disable react/jsx-no-duplicate-props */
-/* eslint-disable prettier/prettier */
-/* eslint-disable semi */
-/* eslint-disable jsx-quotes */
-/* eslint-disable prettier/prettier */
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Contact from './Contact';
 import Feedback from './Feedback';
-
-// const Tab = createBottomTabNavigator();
-// const Tab = createMaterialBottomTabNavigator();
 const Tab = createMaterialTopTabNavigator();
 
 function TabNavigation() {
   return (
-    <NavigationContainer>
+    <NavigationContainer independent={true}>
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, size, color }) => {
@@ -53,7 +42,6 @@ function TabNavigation() {
         }}
         activeColor='#f0edf6'
         inactiveColor='#3e2465'
-        // eslint-disable-next-line react-native/no-inline-styles
         barStyle={{ backgroundColor: '#694fad' }}
       >
         <Tab.Screen

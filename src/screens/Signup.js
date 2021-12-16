@@ -1,7 +1,7 @@
 import React from 'react';
-import {StyleSheet, View, Text, Image, Button,TextInput} from 'react-native';
+import {StyleSheet, View, Text, Image, Button,TextInput,TouchableOpacity} from 'react-native';
 
-export default  Signup = ({navigation}) => {
+export default function Signup  ({navigation}) {
     return (
         <View style={styles.container}>
             <Image source={require('../assets/logo.png')} style={styles.image} />
