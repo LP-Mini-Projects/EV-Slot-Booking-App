@@ -1,11 +1,5 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable no-unused-vars */
-/* eslint-disable prettier/prettier */
-/**
- * @format
- */
 
-import {AppRegistry} from 'react-native';
+import {Appearance, AppRegistry} from 'react-native';
 import App from './App';
 import Splash from './src/screens/Splash';
 import Booking from './src/screens/Booking';
