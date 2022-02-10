@@ -18,7 +18,7 @@ function App() {
   
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Booking">
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
           name="Splash"
           component={Splash}
@@ -56,14 +56,14 @@ function App() {
           component={Tabs}
           options={{headerShown: false}}></Stack.Screen>
           
-          {/* <Stack.Screen
+          <Stack.Screen
           name="Contact"
           component={Contact}
           options={{headerShown: false}}></Stack.Screen>
           <Stack.Screen
           name="Feedback"
           component={Feedback}
-          options={{headerShown: false}}></Stack.Screen> */}
+          options={{headerShown: false}}></Stack.Screen>
       </Stack.Navigator>
       
     </NavigationContainer>
