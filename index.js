@@ -9,5 +9,6 @@ import Signup from './src/screens/Signup';
 import CarDetails from './src/screens/CarDetails';
 import {name as appName} from './app.json';
 import TabNavigation from './src/screens/navigation';
+import Search from './src/screens/Searchscreen';
 
-AppRegistry.registerComponent(appName, () => App);
+AppRegistry.registerComponent(appName, () =>App);

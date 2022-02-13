@@ -11,45 +11,45 @@ import {
 } from 'react-native';
 
 export default function Login({navigation}) {
-  const [email, setemail] = useState('');
-  const [password, setpassword] = useState('');
-  const [token, setToken] = useState('');
-  const STORAGE_KEY = '@save_token';
-  const saveData = async () => {
-    var myHeaders = new Headers();
-    myHeaders.append('Content-Type', 'application/json');
-    myHeaders.append(
-      'Cookie',
-      'csrftoken=3waWJwVEz4D6LxeYfcmWwnvPWyqw8dfFc3NoLbD2qx7YjTTvnkI1rXIroGY73ovv; sessionid=1cbd4sze5lwmf948fagzpu2u53n5hi2m',
-    );
+  // const [email, setemail] = useState('');
+  // const [password, setpassword] = useState('');
+  // const [token, setToken] = useState('');
+  // const STORAGE_KEY = '@save_token';
+  // const saveData = async () => {
+  //   var myHeaders = new Headers();
+  //   myHeaders.append('Content-Type', 'application/json');
+  //   myHeaders.append(
+  //     'Cookie',
+  //     'csrftoken=3waWJwVEz4D6LxeYfcmWwnvPWyqw8dfFc3NoLbD2qx7YjTTvnkI1rXIroGY73ovv; sessionid=1cbd4sze5lwmf948fagzpu2u53n5hi2m',
+  //   );
 
-    var raw = JSON.stringify({
-      email: email,
-      password: password,
-    });
+  //   var raw = JSON.stringify({
+  //     email: email,
+  //     password: password,
+  //   });
 
-    var requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: raw,
-      redirect: 'follow',
-    };
+  //   var requestOptions = {
+  //     method: 'POST',
+  //     headers: myHeaders,
+  //     body: raw,
+  //     redirect: 'follow',
+  //   };
 
-    fetch('https://findmyplug.herokuapp.com/login/', requestOptions)
-      .then(response => response.text())
-      .then(result => {
-        setToken(result), console.log(result);
-      })
-      .catch(error => console.log('error', error));
-    try {
-      //await AsyncStorage.clear();
-      await AsyncStorage.setItem(STORAGE_KEY, token);
-      console.log(token);
-    } catch (e) {
-      //console.log(token);
-      Alert.alert('Failed to save the data to the storage');
-    }
-  };
+  //   fetch('https://findmyplug.herokuapp.com/login/', requestOptions)
+  //     .then(response => response.text())
+  //     .then(result => {
+  //       setToken(result), console.log(result);
+  //     })
+  //     .catch(error => console.log('error', error));
+  //   try {
+  //     //await AsyncStorage.clear();
+  //     await AsyncStorage.setItem(STORAGE_KEY, token);
+  //     console.log(token);
+  //   } catch (e) {
+  //     //console.log(token);
+  //     Alert.alert('Failed to save the data to the storage');
+  //   }
+  // };
   return (
     <View style={styles.container}>
       <Image source={require('../assets/logo.png')} style={styles.image} />
@@ -60,7 +60,7 @@ export default function Login({navigation}) {
           autoCapitalize="none"
           placeholder="Email..."
           placeholderTextColor="#768991"
-          onChangeText={text => setemail(text)}
+          // onChangeText={text => setemail(text)}
         />
       </View>
       <View style={styles.inputView}>
@@ -71,13 +71,13 @@ export default function Login({navigation}) {
           autoCapitalize="none"
           placeholder="Password"
           placeholderTextColor="#768991"
-          onChangeText={text => setpassword(text)}
+          // onChangeText={text => setpassword(text)}
         />
       </View>
       <Text style={styles.text}>Remember Me Forget Password?</Text>
       <TouchableOpacity
         onPress={
-          (() => saveData, navigation.navigate('CarDetails', {t: token}))
+          (() =>navigation.navigate('CarDetails'))
         }>
         <View style={styles.buttonview}>
           <Text style={styles.button}>LOGIN</Text>

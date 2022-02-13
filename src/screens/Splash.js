@@ -1,4 +1,4 @@
-/* eslint-disable prettier/prettier */
+
 import React from 'react';
 import {StyleSheet, View, Image, TouchableOpacity} from 'react-native';
 import Login from './Login';
