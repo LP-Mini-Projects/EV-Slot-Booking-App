@@ -1,4 +1,4 @@
-import React , {useState} from 'react';
+import React , {useState,useEffect} from 'react';
 import {
   StyleSheet,
   View,
@@ -11,37 +11,41 @@ import {
 } from 'react-native';
 
 export default function Signup({navigation}) {
-  // const [email, setemail] = useState('');
-  // const [password, setpassword] = useState('');
-  // const [contact, setContact] = useState();
-  // const [pincode, setPincode] = useState();
-  // const saveData = async () => {
-  //   var myHeaders = new Headers();
-  //   myHeaders.append('Content-Type', 'application/json');
-  //   myHeaders.append(
-  //     'Cookie',
-  //     'csrftoken=38nEC8N6KwnhV9tDih1n18PQdK0hhMvWBLSpsUcjpwCA4h82dChCSpUZ4rEseLqH; sessionid=1cbd4sze5lwmf948fagzpu2u53n5hi2m',
-  //   );
+  // useEffect(() => {
+  //   saveData();
+  // }, []);
+  const [email, setemail] = useState('');
+  const [password, setpassword] = useState('');
+  const [contact, setContact] = useState();
+  const [pincode, setPincode] = useState();
+  const saveData = async() => {
+    console.log(contact);
+    var myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');
+    myHeaders.append(
+      'Cookie',
+      'csrftoken=38nEC8N6KwnhV9tDih1n18PQdK0hhMvWBLSpsUcjpwCA4h82dChCSpUZ4rEseLqH; sessionid=1cbd4sze5lwmf948fagzpu2u53n5hi2m',
+    );
 
-  //   var raw = JSON.stringify({
-  //     email: email,
-  //     password: password,
-  //     phone: contact,
-  //     pincode: pincode,
-  //   });
+    var raw = JSON.stringify({
+      email: email,
+      password: password,
+      phone: contact,
+      pincode: pincode,
+    });
 
-  //   var requestOptions = {
-  //     method: 'POST',
-  //     headers: myHeaders,
-  //     body: raw,
-  //     redirect: 'follow',
-  //   };
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow',
+    };
 
-  //   await fetch('https://findmyplug.herokuapp.com/register/', requestOptions)
-  //     .then(response => response.text())
-  //     .then(result => console.log(result))
-  //     .catch(error => console.log('error', error));
-  // };
+    await fetch('https://findmyplug.herokuapp.com/register/', requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+  };
 
   return (
     <View style={styles.container}>
@@ -58,7 +62,7 @@ export default function Signup({navigation}) {
           style={styles.inputText}
           placeholder="Email..."
           placeholderTextColor="#768991"
-          // onChangeText={text => setemail(text)}
+          onChangeText={text => setemail(text)}
         />
       </View>
       <View style={styles.inputView}>
@@ -66,7 +70,7 @@ export default function Signup({navigation}) {
           style={styles.inputText}
           placeholder="Mobile Number"
           placeholderTextColor="#768991"
-          // onChangeText={text => setContact(text)}
+          onChangeText={text => setContact(text)}
         />
       </View>
       <View style={styles.inputView}>
@@ -74,7 +78,7 @@ export default function Signup({navigation}) {
           style={styles.inputText}
           placeholder="Pincode"
           placeholderTextColor="#768991"
-          // onChangeText={text => setPincode(text)}
+          onChangeText={text => setPincode(text)}
         />
       </View>
       <View style={styles.inputView}>
@@ -82,10 +86,10 @@ export default function Signup({navigation}) {
           style={styles.inputText}
           placeholder="Password"
           placeholderTextColor="#768991"
-          // onChangeText={text => setpassword(text)}
+          onChangeText={text => setpassword(text)}
         />
       </View>
-      <TouchableOpacity onPress={() => navigation.navigate('CarDetails'),Alert.alert('Check your Email')}>
+      <TouchableOpacity onPress={()=>{saveData();navigation.navigate('Login');Alert.alert('Check your Mail')}}>
         <View style={styles.buttonview}>
           <Text style={styles.button}>SIGNUP</Text>
         </View>
