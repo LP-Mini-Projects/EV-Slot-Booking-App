@@ -20,6 +20,8 @@ export default function Signup({navigation}) {
   const [pincode, setPincode] = useState();
   const saveData = async() => {
     console.log(contact);
+    console.log(email);
+    console.log(pincode);
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
     myHeaders.append(
