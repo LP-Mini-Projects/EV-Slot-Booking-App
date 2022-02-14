@@ -18,52 +18,51 @@ function App() {
   
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator initialRouteName="Splash">
         <Stack.Screen
           name="Splash"
           component={Splash}
-          options={{headerShown: false}}></Stack.Screen>
+          options={{headerShown: false}}/>
           <Stack.Screen
           name="Login"
           component={Login}
-          options={{headerShown: false}}></Stack.Screen>
+          options={{headerShown: false}}/>
           <Stack.Screen
           name="Signup"
           component={Signup}
-          options={{headerShown: false}}></Stack.Screen>
+          options={{headerShown: false}}/>
           <Stack.Screen
           name="CarDetails"
           component={CarDetails}
-          options={{headerShown: false}}></Stack.Screen>
+          options={{headerShown: false}}/>
           <Stack.Screen
           name="navigation"
           component={TabNavigation}
-          options={{headerShown: false}}></Stack.Screen>
+          options={{headerShown: false}}/>
           <Stack.Screen
           name="Payment"
           component={Payment}
-          options={{headerShown: false}}></Stack.Screen>
+          options={{headerShown: false}}/>
           <Stack.Screen
           name="Searchscreen"
           component={Search}
-          options={{headerShown: false}}></Stack.Screen>
+          options={{headerShown: false}}/>
           <Stack.Screen
           name="Booking"
           component={Booking}
-          options={{headerShown: false}}></Stack.Screen>
+          options={{headerShown: false}}/>
           <Stack.Screen
           name="bottomTabNavigations"
           component={Tabs}
-          options={{headerShown: false}}></Stack.Screen>
-          
+          options={{headerShown: false}}/>
           <Stack.Screen
           name="Contact"
           component={Contact}
-          options={{headerShown: false}}></Stack.Screen>
+          options={{headerShown: false}}/>
           <Stack.Screen
           name="Feedback"
           component={Feedback}
-          options={{headerShown: false}}></Stack.Screen>
+          options={{headerShown: false}}/>
       </Stack.Navigator>
       
     </NavigationContainer>

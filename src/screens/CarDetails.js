@@ -1,51 +1,61 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   View,
   Text,
   Image,
+  Alert,
   TouchableOpacity,
   TextInput,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+export default function CarDetails({navigation}) {
+  const [key, setKey] = useState(0);
+  const [reg, setReg] = useState('');
+  const [vin, setVin] = useState('');
+  const [model, setModel] = useState('');
+  const [plug, setPlug] = useState('');
 
-export default function CarDetails({navigation, route}) {
-  // let token = route.params.t;
-  // const [reg,setReg]=useState('');
-  // const [vin,setVin]=useState('');
-  // const [model,setModel]=useState('');
-  // const [plug,setPlug]=useState('');
+  const saveData = async () => {
+    // try {
+    //     const value = await AsyncStorage.getItem('@save_token');
+    //     if (value !== null) {
+    //       // We have data!!
+    //       console.log(value);
+    //       setKey(value);
+    //       console.log(key);
+    //     }
+    //   } catch (error) {
+    //     // Error retrieving data
+    //   }
+    const value = await AsyncStorage.getItem('@save_token');
+    var myHeaders = new Headers();
+    myHeaders.append('Authorization', `Token  ${value}`);
+    myHeaders.append('Content-Type', 'application/json');
+    myHeaders.append(
+      'Cookie',
+      'csrftoken=3waWJwVEz4D6LxeYfcmWwnvPWyqw8dfFc3NoLbD2qx7YjTTvnkI1rXIroGY73ovv; sessionid=1cbd4sze5lwmf948fagzpu2u53n5hi2m',
+    );
 
-  // const saveData = async () => {
-  //   var myHeaders = new Headers();
-  //   myHeaders.append(
-  //     'Authorization',
-  //     `Token  ${token}`,
-  //   );
-  //   myHeaders.append('Content-Type', 'application/json');
-  //   myHeaders.append(
-  //     'Cookie',
-  //     'csrftoken=3waWJwVEz4D6LxeYfcmWwnvPWyqw8dfFc3NoLbD2qx7YjTTvnkI1rXIroGY73ovv; sessionid=1cbd4sze5lwmf948fagzpu2u53n5hi2m',
-  //   );
+    var raw = JSON.stringify({
+      registration_no: reg,
+      vehicle_identification_no: vin,
+      vehicle_model: model,
+      plug_type: plug,
+    });
 
-  //   var raw = JSON.stringify({
-  //     registration_no: reg,
-  //     vehicle_identification_no:vin,
-  //     vehicle_model: model,
-  //     plug_type: plug,
-  //   });
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow',
+    };
 
-  //   var requestOptions = {
-  //     method: 'POST',
-  //     headers: myHeaders,
-  //     body: raw,
-  //     redirect: 'follow',
-  //   };
-
-  //   fetch('https://findmyplug.herokuapp.com/vehicles/', requestOptions)
-  //     .then(response => response.text())
-  //     .then(result => console.log(result))
-  //     .catch(error => console.log('error', error));
-  // };
+    await fetch('https://findmyplug.herokuapp.com/vehicles/', requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+  };
   return (
     <View style={styles.container}>
       <Image source={require('../assets/logo.png')} style={styles.image} />
@@ -54,7 +64,7 @@ export default function CarDetails({navigation, route}) {
           style={styles.inputText}
           placeholder="Registration Number"
           placeholderTextColor="#768991"
-          // onChangeText={text => setReg(text)}
+          onChangeText={text => setReg(text)}
         />
       </View>
       <View style={styles.inputView}>
@@ -62,7 +72,7 @@ export default function CarDetails({navigation, route}) {
           style={styles.inputText}
           placeholder="VIN"
           placeholderTextColor="#768991"
-          // onChangeText={text => setVin(text)}
+          onChangeText={text => setVin(text)}
         />
       </View>
       <View style={styles.inputView}>
@@ -70,7 +80,7 @@ export default function CarDetails({navigation, route}) {
           style={styles.inputText}
           placeholder="Model Number "
           placeholderTextColor="#768991"
-          // onChangeText={text => setModel(text)}
+          onChangeText={text => setModel(text)}
         />
       </View>
       <View style={styles.inputView}>
@@ -78,11 +88,14 @@ export default function CarDetails({navigation, route}) {
           style={styles.inputText}
           placeholder="Plug Type"
           placeholderTextColor="#768991"
-          // onChangeText={text => setPlug(text)}
+          onChangeText={text => setPlug(text)}
         />
       </View>
       <TouchableOpacity
-        onPress={() =>navigation.navigate('bottomTabNavigations')}>
+        onPress={() => {
+          saveData();
+          navigation.navigate('bottomTabNavigations');
+        }}>
         <View style={styles.buttonview}>
           <Text style={styles.button}>PROCEED</Text>
         </View>

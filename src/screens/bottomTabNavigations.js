@@ -12,7 +12,7 @@ const Tab = createBottomTabNavigator();
 const Tabs = () => {
   
   return (
-    <Tab.Navigator initialRouteName="Profile" activeColor="#fff">
+    <Tab.Navigator initialRouteName="Search" activeColor="#fff">
       <Tab.Screen
         name="Search"
         component={Search}

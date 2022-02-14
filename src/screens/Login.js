@@ -1,97 +1,112 @@
-
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   View,
   Text,
   Image,
   Button,
+  Alert,
   TextInput,
+  ScrollView,
   TouchableOpacity,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Login({navigation}) {
-  // const [email, setemail] = useState('');
-  // const [password, setpassword] = useState('');
-  // const [token, setToken] = useState('');
-  // const STORAGE_KEY = '@save_token';
-  // const saveData = async () => {
-  //   var myHeaders = new Headers();
-  //   myHeaders.append('Content-Type', 'application/json');
-  //   myHeaders.append(
-  //     'Cookie',
-  //     'csrftoken=3waWJwVEz4D6LxeYfcmWwnvPWyqw8dfFc3NoLbD2qx7YjTTvnkI1rXIroGY73ovv; sessionid=1cbd4sze5lwmf948fagzpu2u53n5hi2m',
-  //   );
+  // useEffect(() => {
+  //   saveData();
+  // }, []);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [tok, setTok] = useState();
 
-  //   var raw = JSON.stringify({
-  //     email: email,
-  //     password: password,
-  //   });
+  //console.log(email);
+  const saveData = async () => {
+    const STORAGE_KEY1 = '@save_token';
+    var myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');
+    myHeaders.append(
+      'Cookie',
+      'csrftoken=aBugKE4huNVscf0CJpQYYGWYM4Zd34afYp5yIH8hSkzPLrDTiK5gmbFMxokSXQZW; sessionid=uw9jqj1994dn44tl7i2olnkpga6frsw6',
+    );
 
-  //   var requestOptions = {
-  //     method: 'POST',
-  //     headers: myHeaders,
-  //     body: raw,
-  //     redirect: 'follow',
-  //   };
+    var raw = JSON.stringify({
+      email: email,
+      password: password,
+    });
 
-  //   fetch('https://findmyplug.herokuapp.com/login/', requestOptions)
-  //     .then(response => response.text())
-  //     .then(result => {
-  //       setToken(result), console.log(result);
-  //     })
-  //     .catch(error => console.log('error', error));
-  //   try {
-  //     //await AsyncStorage.clear();
-  //     await AsyncStorage.setItem(STORAGE_KEY, token);
-  //     console.log(token);
-  //   } catch (e) {
-  //     //console.log(token);
-  //     Alert.alert('Failed to save the data to the storage');
-  //   }
-  // };
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow',
+    };
+
+    await fetch('https://findmyplug.herokuapp.com/login/', requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        setTok(result.token);
+        console.log(result.token);
+        AsyncStorage.setItem(STORAGE_KEY1, result.token);
+      })
+      .catch(error => console.log('error', error));
+    // try {
+    //   //await AsyncStorage.clear();
+    //    AsyncStorage.setItem(STORAGE_KEY1, token);
+    //   console.log(STORAGE_KEY1);
+    // } catch (e) {
+    //   //console.log(token);
+    //   Alert.alert('Failed to save the data to the storage');
+    // }
+  };
+  //console.log(token);
   return (
-    <View style={styles.container}>
-      <Image source={require('../assets/logo.png')} style={styles.image} />
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.inputText}
-          label={'Email'}
-          autoCapitalize="none"
-          placeholder="Email..."
-          placeholderTextColor="#768991"
-          // onChangeText={text => setemail(text)}
-        />
-      </View>
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.inputText}
-          label={'Password'}
-          secureTextEntry
-          autoCapitalize="none"
-          placeholder="Password"
-          placeholderTextColor="#768991"
-          // onChangeText={text => setpassword(text)}
-        />
-      </View>
-      <Text style={styles.text}>Remember Me Forget Password?</Text>
-      <TouchableOpacity
-        onPress={
-          (() =>navigation.navigate('CarDetails'))
-        }>
-        <View style={styles.buttonview}>
-          <Text style={styles.button}>LOGIN</Text>
+    <ScrollView>
+      <View style={styles.container}>
+        <Image source={require('../assets/logo.png')} style={styles.image} />
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.inputText}
+            label={'Email'}
+            autoCapitalize="none"
+            placeholder="Email..."
+            placeholderTextColor="#768991"
+            onChangeText={text => setEmail(text)}
+          />
         </View>
-      </TouchableOpacity>
-      <Text style={styles.label}>--------------------OR------------------</Text>
-      <Text style={styles.label1}>SIGN IN with GOOGLE</Text>
-      <Text style={styles.paragraph}>
-        Don't have an account?
-        <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
-          <Text style={styles.highlight}> Create an account</Text>
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.inputText}
+            label={'Password'}
+            secureTextEntry
+            autoCapitalize="none"
+            placeholder="Password"
+            placeholderTextColor="#768991"
+            onChangeText={text => setPassword(text)}
+          />
+        </View>
+        <Text style={styles.text}>Remember Me Forget Password?</Text>
+        <TouchableOpacity
+          onPress={() => {
+            saveData();
+            navigation.navigate('CarDetails');
+          }}>
+          <View style={styles.buttonview}>
+            <Text style={styles.button}>LOGIN</Text>
+          </View>
         </TouchableOpacity>
-      </Text>
-    </View>
+        <Text style={styles.label}>
+          --------------------OR------------------
+        </Text>
+        <Text style={styles.label1}>SIGN IN with GOOGLE</Text>
+        <Text style={styles.paragraph}>
+          Don't have an account?
+          <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+            <Text style={styles.highlight}> Create an account</Text>
+          </TouchableOpacity>
+        </Text>
+      </View>
+    </ScrollView>
   );
 }
 const styles = StyleSheet.create({
