@@ -6,11 +6,12 @@ import {
   TouchableOpacity,
   FlatList,
   Text,
+  Image
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
-import ProgressBar from './ProgressBar';
+
 
 export default function Search() {
   const [search, setSearch] = useState('');
@@ -64,30 +65,31 @@ export default function Search() {
   const renderItem = ({ item }) => {
     return (
       <View style={styles.card}>
-        <Text style={{ color: 'white', fontWeight: 'bold' }}>STATION NAME</Text>
-        <Text style={styles.title}>{item.station_name}</Text>
-        <Text style={{ color: 'white', fontWeight: 'bold' }}>ADDRESS</Text>
-        <Text style={{ color: 'white', fontSize: 10 }}>
-          {item.location}
+        <View style={{flex:1,flexDirection:'row',backgroundColor:'#768991',borderWidth: 1, borderColor: '#768991',
+           borderStyle: 'solid',borderRadius: 15}}>
+          <Image source = {require('../assets/carstation.png')} style={{width:80,height:80,margin:5,marginTop:8,marginLeft:1}}>
+          </Image>
+          <View style={{flex:1,flexDirection:'column',borderWidth: 1,backgroundColor:'#768991',borderColor: '#768991',
+          borderStyle: 'solid',borderRadius: 15 }}>  
+        <Text style={{ color: 'black', fontWeight: 'bold',marginTop:5,fontSize:12 }}>STATION NAME:
+        <Text style={{ color: 'black',fontSize:11,fontWeight:'normal',marginRight:1}}>{item.station_name}</Text>
         </Text>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <ProgressBar star_rating={item.star_rating} />
-          <Text style={{ color: 'white', fontWeight: 'bold' }}>
-            {item.star_rating}
-          </Text>
+        
+        <Text style={{ color: 'black', fontWeight: 'bold',fontSize:12 }}>ADDRESS:
+        <Text style={{color: 'black',fontSize:11,fontWeight:'normal'  }}> {item.location}</Text>
+        </Text>
+        
+        <Text style={{ color: 'black', fontWeight: 'bold',fontSize:12 }}>WORKING HOURS :
+          <Text style={{ color: 'black',fontSize:11,fontWeight:'normal' }}>{item.working_hours}</Text>
+           </Text>
+           <Text style={{ color: 'black', fontWeight: 'bold',fontSize:12 }}>PHONE NUMBER :
+          <Text style={{ color: 'black',fontSize:11,fontWeight:'normal' }}>{item.phone_no}</Text>
+           </Text>
+          
+          
+          
+          </View>
         </View>
-        <>
-          <Text style={{ color: 'white', fontWeight: 'bold' }}>CITY</Text>
-          <Text style={{ color: 'white', fontSize: 10 }}>{item.city}</Text>
-        </>
-        <>
-          <Text style={{ color: 'white', fontWeight: 'bold' }}>PHONE NUMBER</Text>
-          <Text style={{ color: 'white', fontSize: 10 }}>{item.phone_no}</Text>
-        </>
-        <>
-          <Text style={{ color: 'white', fontWeight: 'bold' }}>WORKING HOURS</Text>
-          <Text style={{ color: 'white', fontSize: 10 }}>{item.working_hours}</Text>
-        </>
       </View>
 
     );
@@ -139,8 +141,9 @@ const styles = StyleSheet.create({
     color: "white",
   },
   inputCard: {
-    position: 'absolute',
+    marginTop:70,
     margin: 20,
+    marginBottom:20,
 
     flexDirection: 'row',
     backgroundColor: '#1f2128',
@@ -150,18 +153,7 @@ const styles = StyleSheet.create({
     borderColor: "white",
     borderWidth: 0.5
   },
-  infoCard: {
-    position: 'absolute',
-    bottom: 10,
-    left: 10,
-    right: 10,
-    top: 40,
-    paddingRight: 10,
-    backgroundColor: 'rgba(21,21,21,0.5)',
-    borderRadius: 10,
-    overflow: 'hidden',
-    flexDirection: 'row',
-  },
+  
 
   title: {
     color: 'white',
@@ -169,18 +161,18 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   card: {
-
-    marginTop: 70,
-    marginLeft: 20,
-    justifyContent: 'space-evenly',
+    height: 100,
+    width: 370,
+    paddingLeft: 10,
+    margin: 15,
+    marginLeft: 15,
+    
+    marginTop:5,
+    borderWidth: 1,
+    backgroundColor:'#768991',
+    borderColor: '#768991',
+    borderStyle: 'solid',
+    borderRadius: 15,  
   },
-  textInfo: {
-    left: 10,
-    right: 10,
-    flex: 1,
-
-    marginTop: 40,
-    marginLeft: 20,
-    justifyContent: 'space-evenly',
-  },
+  
 });
