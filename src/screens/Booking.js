@@ -91,7 +91,7 @@ export default function Booking({navigation}) {
         </View>
       </View>
       <View style={styles.buttonview}>
-        <TouchableOpacity onPress={() => navigation.navigate('Payment')}> 
+        <TouchableOpacity> 
         <Text style={styles.button}>CONFIRM BOOKING</Text>
         </TouchableOpacity>
       </View>
