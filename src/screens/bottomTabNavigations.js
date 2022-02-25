@@ -18,7 +18,7 @@ const Tabs = () => {
         component={Search}
         options={{
           headerShown: false,
-          tabBarLabel: 'Contact',
+          tabBarLabel: 'Search',
           tabBarColor: '#009387',
           tabBarIcon: ({color}) => (
             <Icon name="search" color={color} size={26} />
