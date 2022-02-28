@@ -13,6 +13,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
 
+
 export default function Search() {
   const [search, setSearch] = useState('');
   const [filteredData, setFilteredData] = useState([]);
@@ -140,11 +141,8 @@ const styles = StyleSheet.create({
     borderBottomColor: "white",
     color: "white",
   },
-  inputCard: {
-    marginTop:70,
+  inputCard: { 
     margin: 20,
-    marginBottom:20,
-
     flexDirection: 'row',
     backgroundColor: '#1f2128',
     alignItems: 'center',

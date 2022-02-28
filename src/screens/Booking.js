@@ -1,5 +1,5 @@
 
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -9,15 +9,14 @@ import {
   Image,
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import Slider from 'react-native-slider';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import Slider from '@react-native-community/slider';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Payment from './Payment';
-export default function Booking({navigation}) {
+export default function Booking({ navigation }) {
   const [date, setDate] = useState(new Date(1598051730000));
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
-  const [duration,setDuration]=useState(0)
-  const [sliderValue,setsliderValue]=useState(10)
+  const [duration, setDuration] = useState(0)
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -80,25 +79,24 @@ export default function Booking({navigation}) {
       <View>
         <Text style={styles.title}>DURATION</Text>
       </View>
-      {/* <View style={styles.container}>
-      <Slider
-                style={styles.slider}
-                minimumValue={1}
+      <View style={styles.container}>
+        <Slider
+                 style={styles.slider}
+                minimumValue={0}
                 maximumValue={10}
                 thumbTintColor="black"
                 step={2}
-                value={parseInt(duration)}
-                sliderValue={parseInt(sliderValue)}
                 minimumTrackTintColor="blue"
                 maximumTrackTintColor="gray"
                 thumbTintColor="#b9e4c9"
-                onValueChange={value => setDuration({sliderValue: value})}
+                
+                onValueChange={(value) => setDuration(value)}
               />
-        <Text>Total Duration: {duration}</Text>
-      </View> */}
+        <Text  style={styles.title}>Total Duration: {duration}</Text>
+      </View>
       <View style={styles.buttonview}>
-        <TouchableOpacity> 
-        <Text style={styles.button}>FIND SLOTS</Text>
+        <TouchableOpacity>
+          <Text style={styles.button}>FIND SLOTS</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -118,13 +116,13 @@ const styles = StyleSheet.create({
     width: 130,
     height: 100,
     backgroundColor: 'white',
-    marginLeft:hp('5%'),
+    marginLeft: hp('5%'),
     marginTop: hp('5%'),
   },
   col: {
     flexDirection: 'row',
     // marginTop: hp('10%'),
-    
+
   },
   header: {
     color: '#768991',
@@ -143,30 +141,37 @@ const styles = StyleSheet.create({
     height: 40,
     backgroundColor: '#1f2128',
     borderColor: '#69fff1',
-    borderWidth: 2,
-    marginLeft: hp('15%'),
-    marginTop: hp('15%'),
+    borderWidth: 4,
+    justifyContent:'center',
+    alignItems:'center',
+    marginHorizontal :130,
+    marginBottom:30,
+
+   
   },
   button: {
     color: '#69fff1',
-    fontSize: 12,
+    fontSize: 14,
     textAlign: 'center',
     fontFamily: 'Source Sans Pro',
-    marginTop: hp('1.5%'),
+    marginTop: hp('0.5%'),
+    justifyContent:'center',
+    alignItems:'center',
+
   },
   image: {
     marginTop: hp('2.5%'),
     alignSelf: 'center',
   },
-  title:{
-    color:'white',
-    fontWeight:'700',
-    marginLeft:hp('5%'),
+  title: {
+    color: 'white',
+    fontWeight: '700',
+    marginLeft: hp('5%'),
     marginTop: hp('5%'),
   },
   slider: {
     height: 45,
-    width: 70,
-    marginLeft:hp('5%'),
+    
+    marginLeft: hp('5%'),
   },
 });

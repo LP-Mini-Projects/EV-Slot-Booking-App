@@ -11,4 +11,4 @@ import {name as appName} from './app.json';
 import TabNavigation from './src/screens/navigation';
 import Search from './src/screens/Searchscreen';
 
-AppRegistry.registerComponent(appName, () =>Booking);
+AppRegistry.registerComponent(appName, () =>App);
