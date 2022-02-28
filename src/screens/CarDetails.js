@@ -85,16 +85,17 @@ export default function CarDetails({ navigation }) {
           onChangeText={text => setModel(text)}
         />
       </View>
-      <View  style={styles.dropdown} >
-        <SelectDropdown 
-       dropdownBackgroundColor='#1f2128'
+      <View style={styles.dropdown} >
+        <SelectDropdown
+          dropdownBackgroundColor='#1f2128'
           data={plugtypes}
-        
+
           statusBarTranslucent
-         
-         defaultButtonText="Plug Type"
-         defaultButtonTextColor="#768991"
-          onSelect={(selectedItem, index) => {setPlug(),
+
+          defaultButtonText="Plug Type"
+          defaultButtonTextColor="#768991"
+          onSelect={(selectedItem, index) => {
+            setPlug(),
             console.log(selectedItem, index)
           }}
         />
@@ -102,7 +103,12 @@ export default function CarDetails({ navigation }) {
       <TouchableOpacity
         onPress={() => {
           saveData();
-          navigation.navigate('bottomTabNavigations');
+          navigation.navigate('bottomTabNavigations', {
+            registration_no: reg,
+            vehicle_identification_no: vin,
+            vehicle_model: model,
+            plug_type: plug,
+          });
         }}>
         <View style={styles.buttonview}>
           <Text style={styles.button}>PROCEED</Text>

@@ -8,6 +8,7 @@ import {
   Button,
   Image,
 } from 'react-native';
+import {useRoute} from '@react-navigation/native'
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Slider from '@react-native-community/slider';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
@@ -17,6 +18,7 @@ export default function Booking({ navigation }) {
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
   const [duration, setDuration] = useState(0)
+  const route = useRoute();
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -39,9 +41,9 @@ export default function Booking({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.container1}>
-        <Text style={styles.header}>Station Name:</Text>
-        <Text style={styles.header}>Address:</Text>
-        <Text style={styles.header}>Phone No:</Text>
+        <Text style={styles.header}>Station Name: {route.params.station_name}</Text>
+        <Text style={styles.header}>Address: {route.params.location}</Text>
+        <Text style={styles.header}>Phone No: {route.params.phone_no}</Text>
       </View>
       <View style={styles.col}>
         <View style={styles.container2}>

@@ -11,6 +11,9 @@ import {
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
+import { useNavigation } from '@react-navigation/native'
+
+
 
 
 
@@ -18,6 +21,7 @@ export default function Search() {
   const [search, setSearch] = useState('');
   const [filteredData, setFilteredData] = useState([]);
   const [masterData, setMasterData] = useState([]);
+  const navigation = useNavigation();
 
   useEffect(() => {
     fetchData();
@@ -65,33 +69,48 @@ export default function Search() {
 
   const renderItem = ({ item }) => {
     return (
-      <View style={styles.card}>
-        <View style={{flex:1,flexDirection:'row',backgroundColor:'#768991',borderWidth: 1, borderColor: '#768991',
-           borderStyle: 'solid',borderRadius: 15}}>
-          <Image source = {require('../assets/carstation.png')} style={{width:80,height:80,margin:5,marginTop:8,marginLeft:1}}>
-          </Image>
-          <View style={{flex:1,flexDirection:'column',borderWidth: 1,backgroundColor:'#768991',borderColor: '#768991',
-          borderStyle: 'solid',borderRadius: 15 }}>  
-        <Text style={{ color: 'black', fontWeight: 'bold',marginTop:5,fontSize:12 }}>STATION NAME:
-        <Text style={{ color: 'black',fontSize:11,fontWeight:'normal',marginRight:1}}>{item.station_name}</Text>
-        </Text>
-        
-        <Text style={{ color: 'black', fontWeight: 'bold',fontSize:12 }}>ADDRESS:
-        <Text style={{color: 'black',fontSize:11,fontWeight:'normal'  }}> {item.location}</Text>
-        </Text>
-        
-        <Text style={{ color: 'black', fontWeight: 'bold',fontSize:12 }}>WORKING HOURS :
-          <Text style={{ color: 'black',fontSize:11,fontWeight:'normal' }}>{item.working_hours}</Text>
-           </Text>
-           <Text style={{ color: 'black', fontWeight: 'bold',fontSize:12 }}>PHONE NUMBER :
-          <Text style={{ color: 'black',fontSize:11,fontWeight:'normal' }}>{item.phone_no}</Text>
-           </Text>
-          
-          
-          
+      <TouchableOpacity onPress={() => {
+
+        navigation.navigate('Booking', {
+          station_name: item.station_name,
+          location:  item.location,
+          phone_no: item.phone_no
+
+
+        });
+      }}>
+        <View style={styles.card}>
+          <View style={{
+            flex: 1, flexDirection: 'row', backgroundColor: '#768991', borderWidth: 1, borderColor: '#768991',
+            borderStyle: 'solid', borderRadius: 15
+          }}>
+            <Image source={require('../assets/carstation.png')} style={{ width: 80, height: 80, margin: 5, marginTop: 8, marginLeft: 1 }}>
+            </Image>
+            <View style={{
+              flex: 1, flexDirection: 'column', borderWidth: 1, backgroundColor: '#768991', borderColor: '#768991',
+              borderStyle: 'solid', borderRadius: 15
+            }}>
+              <Text style={{ color: 'black', fontWeight: 'bold', marginTop: 5, fontSize: 12 }}>STATION NAME:
+                <Text style={{ color: 'black', fontSize: 11, fontWeight: 'normal', marginRight: 1 }}>{item.station_name}</Text>
+              </Text>
+
+              <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 12 }}>ADDRESS:
+                <Text style={{ color: 'black', fontSize: 11, fontWeight: 'normal' }}> {item.location}</Text>
+              </Text>
+
+              <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 12 }}>WORKING HOURS :
+                <Text style={{ color: 'black', fontSize: 11, fontWeight: 'normal' }}>{item.working_hours}</Text>
+              </Text>
+              <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 12 }}>PHONE NUMBER :
+                <Text style={{ color: 'black', fontSize: 11, fontWeight: 'normal' }}>{item.phone_no}</Text>
+              </Text>
+
+
+
+            </View>
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
 
     );
   };
@@ -123,6 +142,7 @@ export default function Search() {
           keyExtractor={({ id }) => id}
           contentContainerStyle={{}}
           renderItem={renderItem}
+
         />
 
       </View>
@@ -141,7 +161,7 @@ const styles = StyleSheet.create({
     borderBottomColor: "white",
     color: "white",
   },
-  inputCard: { 
+  inputCard: {
     margin: 20,
     flexDirection: 'row',
     backgroundColor: '#1f2128',
@@ -151,7 +171,7 @@ const styles = StyleSheet.create({
     borderColor: "white",
     borderWidth: 0.5
   },
-  
+
 
   title: {
     color: 'white',
@@ -164,13 +184,13 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     margin: 15,
     marginLeft: 15,
-    
-    marginTop:5,
+
+    marginTop: 5,
     borderWidth: 1,
-    backgroundColor:'#768991',
+    backgroundColor: '#768991',
     borderColor: '#768991',
     borderStyle: 'solid',
-    borderRadius: 15,  
+    borderRadius: 15,
   },
-  
+
 });
