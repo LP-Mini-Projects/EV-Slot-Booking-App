@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -9,12 +9,14 @@ import {
   TextInput,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-export default function CarDetails({navigation}) {
+import SelectDropdown from 'react-native-select-dropdown'
+export default function CarDetails({ navigation }) {
   const [key, setKey] = useState(0);
   const [reg, setReg] = useState('');
   const [vin, setVin] = useState('');
   const [model, setModel] = useState('');
   const [plug, setPlug] = useState('');
+  const plugtypes = ["IEC-60309", "IEC-62196(AC type 2)", "3 Pin Connector(15 Amp)", "CSS connector", "GBT connector", "CHAdeMO connector"]
 
   const saveData = async () => {
     // try {
@@ -83,12 +85,18 @@ export default function CarDetails({navigation}) {
           onChangeText={text => setModel(text)}
         />
       </View>
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.inputText}
-          placeholder="Plug Type"
-          placeholderTextColor="#768991"
-          onChangeText={text => setPlug(text)}
+      <View  style={styles.dropdown} >
+        <SelectDropdown 
+       dropdownBackgroundColor='#1f2128'
+          data={plugtypes}
+        
+          statusBarTranslucent
+         
+         defaultButtonText="Plug Type"
+         defaultButtonTextColor="#768991"
+          onSelect={(selectedItem, index) => {setPlug(),
+            console.log(selectedItem, index)
+          }}
         />
       </View>
       <TouchableOpacity

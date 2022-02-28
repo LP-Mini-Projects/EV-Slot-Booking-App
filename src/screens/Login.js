@@ -102,7 +102,7 @@ export default function Login({navigation}) {
         <Text style={styles.paragraph}>
           Don't have an account?
           <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
-            <Text style={styles.highlight}> Create an account</Text>
+            <Text style={styles.highlight}>  Create an account</Text>
           </TouchableOpacity>
         </Text>
       </View>
@@ -113,11 +113,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#1f2128',
+   
   },
   image: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 100,
+    marginTop: 30,
     marginLeft: 50,
     marginRight: 20,
     resizeMode: 'contain',

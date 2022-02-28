@@ -96,12 +96,14 @@ export default function Signup({navigation}) {
           <Text style={styles.button}>SIGNUP</Text>
         </View>
       </TouchableOpacity>
+      <View>
       <Text style={styles.paragraph}>
         Already have an account?
         <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-          <Text style={styles.highlight}>Sign in</Text>
+          <Text style={styles.highlight}> Sign in</Text>
         </TouchableOpacity>
       </Text>
+        </View>
     </View>
   );
 }
@@ -113,7 +115,7 @@ const styles = StyleSheet.create({
   image: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 100,
+    marginTop: 30,
     marginLeft: 50,
     marginRight: 20,
     resizeMode: 'contain',
@@ -124,7 +126,7 @@ const styles = StyleSheet.create({
     height: 45,
     width: 325,
     paddingLeft: 10,
-    margin: 5,
+    margin: 10,
     marginLeft: 35,
     borderWidth: 1,
     borderColor: '#768991',
@@ -142,7 +144,7 @@ const styles = StyleSheet.create({
     borderColor: '#69fff1',
     borderWidth: 2,
     marginLeft: 50,
-    marginTop: 55,
+    marginTop: 30,
   },
   button: {
     color: '#69fff1',
@@ -153,7 +155,7 @@ const styles = StyleSheet.create({
     marginTop: 3,
   },
   paragraph: {
-    margin: 50,
+    margin: 30,
     marginLeft: 85,
     color: '#768991',
     fontSize: 15,
