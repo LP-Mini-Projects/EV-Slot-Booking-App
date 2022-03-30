@@ -20,7 +20,7 @@ export default function Login({navigation}) {
   const [password, setPassword] = useState('');
   const [tok, setTok] = useState();
 
-  //console.log(email);
+  console.log(email);
   const saveData = async () => {
     const STORAGE_KEY1 = '@save_token';
     var myHeaders = new Headers();

@@ -42,7 +42,7 @@ export default function Booking({ navigation }) {
 
   const showDatepicker = () => {
     showMode('date');
-  };
+  }; 
 
   const showTimepicker = () => {
     showMode('time');
@@ -175,6 +175,7 @@ const styles = StyleSheet.create({
     color: '#768991',
     fontWeight: 'bold',
     fontFamily: 'Source Sans Pro',
+    margin:2,
   },
   label: {
     color: 'black',
