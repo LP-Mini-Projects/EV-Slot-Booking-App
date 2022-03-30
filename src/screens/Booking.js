@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import {
   StyleSheet,
   View,
@@ -7,8 +7,10 @@ import {
   TouchableOpacity,
   Button,
   Image,
+  FlatList
 } from 'react-native';
-import {useRoute} from '@react-navigation/native'
+import {useRoute} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Slider from '@react-native-community/slider';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
@@ -19,6 +21,13 @@ export default function Booking({ navigation }) {
   const [show, setShow] = useState(false);
   const [duration, setDuration] = useState(0)
   const route = useRoute();
+  const plugid= route.params.id;
+  const [data, setdata]= useState([]);
+
+  
+  useEffect(() => {
+    saveData();
+  }, []);
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -38,12 +47,40 @@ export default function Booking({ navigation }) {
   const showTimepicker = () => {
     showMode('time');
   };
+  const saveData = async () => {
+    const value = await AsyncStorage.getItem('@save_token');
+    var myHeaders = new Headers();
+    myHeaders.append('Authorization', `Token  ${value}`);
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Cookie", "csrftoken=6zxIticknTN71RTD8c8rNHQwTZ4AfPE8u3qj8XH0HJZTFeYT2qGhd2DV7sDE3b9V; sessionid=lbfl3rczbptkaipjeaarjqc0ub7suxfi");
+
+    var formdata = new FormData();
+
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      
+      redirect: 'follow'
+};
+
+ await fetch(`https://findmyplug.herokuapp.com/slot/?station=${plugid}`, requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .then(result => {
+    setdata(result);
+    console.log(data);
+  })
+  .catch(error => console.log('error', error));
+}
+
+  console.log(route.params.id);
   return (
     <View style={styles.container}>
       <View style={styles.container1}>
         <Text style={styles.header}>Station Name: {route.params.station_name}</Text>
         <Text style={styles.header}>Address: {route.params.location}</Text>
         <Text style={styles.header}>Phone No: {route.params.phone_no}</Text>
+        <Text style={styles.header}>Id: {route.params.id}</Text>
       </View>
       <View style={styles.col}>
         <View style={styles.container2}>
@@ -77,6 +114,14 @@ export default function Booking({ navigation }) {
       </View>
       <View>
         <Text style={styles.title}>PLUG TYPE</Text>
+        <FlatList 
+        
+        data={data}
+        keyExtractor={({ id }) => id}
+          contentContainerStyle={{}}
+        renderItem={({item}) => <Text style={styles.title}>{item.charger_type}</Text> }
+      />
+
       </View>
       <View>
         <Text style={styles.title}>DURATION</Text>
@@ -86,7 +131,7 @@ export default function Booking({ navigation }) {
                  style={styles.slider}
                 minimumValue={0}
                 maximumValue={10}
-                thumbTintColor="black"
+                
                 step={2}
                 minimumTrackTintColor="blue"
                 maximumTrackTintColor="gray"

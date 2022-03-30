@@ -21,6 +21,7 @@ export default function Search() {
   const [search, setSearch] = useState('');
   const [filteredData, setFilteredData] = useState([]);
   const [masterData, setMasterData] = useState([]);
+  const[id,setid]=useState('');
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -42,6 +43,7 @@ export default function Search() {
         console.log(JSON.stringify(response.data));
         setFilteredData(response.data);
         setMasterData(response.data);
+        //console.log(response.length())
       })
       .catch(function (error) {
         console.log(error);
@@ -74,7 +76,8 @@ export default function Search() {
         navigation.navigate('Booking', {
           station_name: item.station_name,
           location:  item.location,
-          phone_no: item.phone_no
+          phone_no: item.phone_no,
+          id: item.id,
 
 
         });
