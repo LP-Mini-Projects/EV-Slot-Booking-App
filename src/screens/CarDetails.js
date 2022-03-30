@@ -89,7 +89,6 @@ export default function CarDetails({ navigation }) {
         <SelectDropdown
           dropdownBackgroundColor='#1f2128'
           data={plugtypes}
-
           statusBarTranslucent
 
           defaultButtonText="Plug Type"
@@ -176,4 +175,8 @@ const styles = StyleSheet.create({
   highlight: {
     color: 'white',
   },
+  dropdown:{
+    justifyContent:'center',
+    alignContent:'center'
+  }
 });
