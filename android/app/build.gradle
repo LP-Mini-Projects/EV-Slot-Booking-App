@@ -131,6 +131,8 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
+   
+
     defaultConfig {
         applicationId "com.ev_slot_booking_app"
         minSdkVersion rootProject.ext.minSdkVersion
